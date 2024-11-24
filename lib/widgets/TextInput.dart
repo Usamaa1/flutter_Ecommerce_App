@@ -50,7 +50,7 @@ class _TextInputState extends State<TextInput> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(top: 15, bottom: 15),
+      margin: const EdgeInsets.only(top: 15, bottom: 15),
       width: MediaQuery.of(context).size.width * (widget.inputWidth ?? 1.0),
       child: Stack(
         alignment: AlignmentDirectional.topEnd,

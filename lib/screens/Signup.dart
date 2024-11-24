@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:full_app/screens/Login.dart';
 import 'package:full_app/screens/MyHome.dart';
-import 'package:full_app/screens/Signup.dart';
 import 'package:full_app/widgets/HeadingText.dart';
 import 'package:full_app/widgets/IconButton.dart';
 import 'package:full_app/widgets/TextInput.dart';
 import 'package:full_app/widgets/TextWithLink.dart';
 
-class Login extends StatefulWidget {
-  const Login({super.key});
+class Signup extends StatefulWidget {
+  const Signup({super.key});
 
   @override
-  State<Login> createState() => _LoginState();
+  State<Signup> createState() => _SignupState();
 }
 
-class _LoginState extends State<Login> {
+class _SignupState extends State<Signup> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passController = TextEditingController();
   @override
@@ -25,7 +25,14 @@ class _LoginState extends State<Login> {
         child: Center(
           child: Column(
             children: [
-              const HeadingText(headingText: "Login"),
+              const HeadingText(headingText: "User Signup"),
+              TextInput(
+                labelText: "Enter your Name",
+                inputController: emailController,
+                inputColor: 0xFF2d3436,
+                inputWidth: 0.9,
+                borderRadius: 10,
+              ),
               TextInput(
                 labelText: "Enter your Email",
                 inputController: emailController,
@@ -45,17 +52,25 @@ class _LoginState extends State<Login> {
                 securingCharacter: "*",
                 inputIsPassword: true,
               ),
+              TextInput(
+                labelText: "Enter your City",
+                inputController: emailController,
+                inputColor: 0xFF2d3436,
+                inputWidth: 0.9,
+                borderRadius: 10,
+              ),
               MyIconButton(
-                buttonText: "Login",
+                buttonText: "Sign Up",
                 buttonFunc: () {},
                 // buttonIcon: FontAwesomeIcons.stairs,
                 buttonBGColor: 0xff000000,
               ),
               const TextWithLink(
-                simpleText: "Don't have an account?",
-                linkText: "Sign up",
+                simpleText: "Already have an account?",
+                linkText: "Login",
                 isLink: true,
-                pageRoute: Signup(),
+                pageRoute: Login(),
+                // horizontalAlignment: MainAxisAlignment.end,
                 // isPushReplacement: true,
               ),
               MyIconButton(
