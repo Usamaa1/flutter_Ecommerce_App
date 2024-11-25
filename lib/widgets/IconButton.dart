@@ -9,6 +9,7 @@ class MyIconButton extends StatelessWidget {
   final int? buttonFGColor;
   final double? buttonVPadding;
   final double? buttonHPadding;
+  final double? buttonIconSize;
   const MyIconButton({
     super.key,
     required this.buttonText,
@@ -18,6 +19,7 @@ class MyIconButton extends StatelessWidget {
     this.buttonFGColor,
     this.buttonVPadding,
     this.buttonHPadding,
+    this.buttonIconSize,
   });
 
   @override
@@ -26,7 +28,7 @@ class MyIconButton extends StatelessWidget {
       style: ElevatedButton.styleFrom(
         padding: EdgeInsets.symmetric(
           vertical: buttonVPadding ?? 12,
-          horizontal: buttonVPadding ?? 30,
+          horizontal: buttonHPadding ?? 30,
         ),
         backgroundColor: Color(buttonBGColor ?? 0xff3742fa),
         foregroundColor: Color(buttonFGColor ?? 0xfff1f2f6),
@@ -36,7 +38,12 @@ class MyIconButton extends StatelessWidget {
         buttonText,
         style: TextStyle(fontSize: 16),
       ),
-      icon: buttonIcon != null ? FaIcon(buttonIcon) : null,
+      icon: buttonIcon != null
+          ? FaIcon(
+              buttonIcon,
+              size: buttonIconSize,
+            )
+          : null,
     );
   }
 }
