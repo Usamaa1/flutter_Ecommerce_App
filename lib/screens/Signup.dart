@@ -79,7 +79,7 @@ class _SignupState extends State<Signup> {
                 buttonFunc: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => MyHome()),
+                    MaterialPageRoute(builder: (context) => const MyHome()),
                   );
                 },
               )

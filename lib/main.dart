@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:full_app/screens/MyHome.dart';
-import 'package:full_app/screens/splashScreen.dart';
-import 'package:full_app/widgets/MyCards.dart';
 
 void main() {
   runApp(const MyApp());

@@ -64,7 +64,7 @@ class _LoginState extends State<Login> {
                 buttonFunc: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => MyHome()),
+                    MaterialPageRoute(builder: (context) => const MyHome()),
                   );
                 },
               )

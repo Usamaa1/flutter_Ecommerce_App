@@ -36,7 +36,7 @@ class MyIconButton extends StatelessWidget {
       onPressed: buttonFunc,
       label: Text(
         buttonText,
-        style: TextStyle(fontSize: 16),
+        style: const TextStyle(fontSize: 16),
       ),
       icon: buttonIcon != null
           ? FaIcon(
