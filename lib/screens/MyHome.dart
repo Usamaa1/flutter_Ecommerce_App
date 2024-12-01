@@ -1,15 +1,28 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:full_app/widgets/MyAppBar.dart';
 import 'package:full_app/widgets/MyCards.dart';
 import 'package:full_app/widgets/MyCarouselSlider.dart';
 
-class MyHome extends StatelessWidget {
+class MyHome extends StatefulWidget {
   const MyHome({super.key});
+
+  @override
+  State<MyHome> createState() => _MyHomeState();
+}
+
+class _MyHomeState extends State<MyHome> {
+  Map<int, bool> heartIconState = {};
+  Map<int, bool> cartIconState = {};
+  int cCount = 0;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: MyAppBar(
+        cartCount: cCount,
+      ),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -35,7 +48,37 @@ class MyHome extends StatelessWidget {
                   mainAxisExtent: 234),
               itemCount: 8,
               itemBuilder: (context, index) {
-                // return MyCards();
+                heartIconState.putIfAbsent(index, () => true);
+                cartIconState.putIfAbsent(index, () => false);
+                return MyCards(
+                  imageName:
+                      "https://plus.unsplash.com/premium_photo-1681336999500-e4f96fe367f8?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                  cardTitle: "Iphone 16",
+                  cardPrice: "400",
+                  cardRating: 3.4,
+                  cardCategory: "Electronics",
+                  heartIcon: heartIconState[index]!
+                      ? FontAwesomeIcons.heart
+                      : FontAwesomeIcons.solidHeart,
+                  heartIconColor:
+                      heartIconState[index]! ? 0xffffffff : 0xffee5253,
+                  heartIconFunc: () {
+                    setState(() {
+                      heartIconState[index] = !heartIconState[index]!;
+                    });
+                  },
+                  cartIcon: cartIconState[index]!
+                      ? FontAwesomeIcons.minus
+                      : FontAwesomeIcons.plus,
+                  cartBgColor: cartIconState[index]! ? 0xff636e72 : 0xff000000,
+                  addToCartFunc: () {
+                    setState(() {
+                      cartIconState[index] = !cartIconState[index]!;
+                     cartIconState[index]! ? cCount++ : cCount--;
+                      print(cCount);
+                    });
+                  },
+                );
               },
             )
           ],
