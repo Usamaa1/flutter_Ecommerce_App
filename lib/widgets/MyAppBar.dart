@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:full_app/screens/Cart.dart';
 
 class MyAppBar extends StatefulWidget implements PreferredSizeWidget {
   final int? cartCount;
@@ -20,27 +21,29 @@ class _MyAppBarState extends State<MyAppBar> {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      title: Text("My App Bar"),
+      title: const Text("My App Bar"),
       actions: [
         Stack(
           alignment: Alignment.bottomRight,
           children: [
             IconButton(
-              icon: FaIcon(FontAwesomeIcons.cartShopping),
-              onPressed: () {},
+              icon: const FaIcon(FontAwesomeIcons.cartShopping),
+              onPressed: () {
+                Navigator.push(
+                    context, MaterialPageRoute(builder: (context) => Cart()));
+              },
             ),
             CircleAvatar(
               radius: 10,
-              backgroundColor: Color.fromARGB(255, 132, 132, 255),
+              backgroundColor: const Color.fromARGB(255, 132, 132, 255),
               child: Text(
                 "${widget.cartCount}",
-                style: TextStyle(color: Color(0xffffffff), fontSize: 12),
+                style: const TextStyle(color: Color(0xffffffff), fontSize: 12),
               ),
             )
           ],
         )
       ],
     );
-    ;
   }
 }
