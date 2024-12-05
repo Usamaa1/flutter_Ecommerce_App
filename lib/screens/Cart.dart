@@ -10,6 +10,8 @@ class Cart extends StatefulWidget {
 }
 
 class _CartState extends State<Cart> {
+  int cartCount = 1;
+  TextEditingController cont = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,7 +32,10 @@ class _CartState extends State<Cart> {
                 tileColor: const Color(0xfff5f6fa),
                 leading: Image.network(
                     'https://images.unsplash.com/photo-1520342868574-5fa3804e551c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=6ff92caffcdd63681a35134a6770ed3b&auto=format&fit=crop&w=1951&q=80'),
-                title: Text('Item $index'),
+                title: Text(
+                  'Product $index',
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
                 subtitle: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -38,14 +43,64 @@ class _CartState extends State<Cart> {
                     Row(
                       children: [
                         IconButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              setState(() {
+                                if (cartCount > 1) {
+                                  cartCount--;
+                                  cont.text = cartCount.toString();
+                                }
+                              });
+                            },
                             icon: const FaIcon(
                               FontAwesomeIcons.minus,
                               size: 14,
                             )),
-                        const Text('2'),
+                        GestureDetector(
+                          onTap: () {
+                            showModalBottomSheet(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return SizedBox(
+                                    height: 300,
+                                    child: Center(
+                                      child: Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Text(
+                                            "Add Quantity",
+                                            style: TextStyle(fontSize: 22),
+                                          ),
+                                          TextField(
+                                            controller: cont,
+                                          ),
+                                          ElevatedButton(
+                                              onPressed: () {},
+                                              child: Text("Update Quantity"))
+                                        ],
+                                      ),
+                                    ),
+                                  );
+                                });
+                          },
+                          child: Container(
+                            alignment: Alignment.center,
+                            decoration: BoxDecoration(
+                                border: Border.all(width: 1),
+                                borderRadius: BorderRadius.circular(10)),
+                            width: 25,
+                            child: Text(
+                              cartCount.toString(),
+                            ),
+                          ),
+                        ),
                         IconButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              setState(() {
+                                cartCount++;
+                                cont.text = cartCount.toString();
+                              });
+                            },
                             icon: const FaIcon(
                               FontAwesomeIcons.plus,
                               size: 14,

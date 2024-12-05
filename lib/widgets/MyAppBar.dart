@@ -30,7 +30,7 @@ class _MyAppBarState extends State<MyAppBar> {
               icon: const FaIcon(FontAwesomeIcons.cartShopping),
               onPressed: () {
                 Navigator.push(
-                    context, MaterialPageRoute(builder: (context) => Cart()));
+                    context, MaterialPageRoute(builder: (context) => const Cart()));
               },
             ),
             CircleAvatar(
