@@ -66,7 +66,7 @@ class CartBottomBar extends StatelessWidget {
                       ),
                       Padding(
                         padding: const EdgeInsets.all(8.0),
-                        child: Text("${shippingFees ?? 0}"),
+                        child: Text("${shippingFees}"),
                       ),
                     ],
                   ),
