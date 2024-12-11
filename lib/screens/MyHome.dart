@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:full_app/Models/ScreensRoutes.dart';
 import 'package:full_app/widgets/MyAppBar.dart';
 import 'package:full_app/widgets/MyCards.dart';
 import 'package:full_app/widgets/MyCarouselSlider.dart';
+import 'package:full_app/widgets/MyDrawer.dart';
 
 class MyHome extends StatefulWidget {
   const MyHome({super.key});
@@ -20,7 +22,11 @@ class _MyHomeState extends State<MyHome> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: MyAppBar(
+        title: "Electronic Hub",
         cartCount: cCount,
+      ),
+      drawer: MyDrawer(
+        screensList: ScreensRoutes.screens,
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -73,7 +79,7 @@ class _MyHomeState extends State<MyHome> {
                   addToCartFunc: () {
                     setState(() {
                       cartIconState[index] = !cartIconState[index]!;
-                     cartIconState[index]! ? cCount++ : cCount--;
+                      cartIconState[index]! ? cCount++ : cCount--;
                       print(cCount);
                     });
                   },

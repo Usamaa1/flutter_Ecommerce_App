@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:full_app/screens/Checkout.dart';
 import 'package:full_app/widgets/CartBottomBar.dart';
 import 'package:full_app/widgets/MyAppBar.dart';
 
@@ -18,15 +17,13 @@ class _CartState extends State<Cart> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: const MyAppBar(
+          title: "Cart",
           cartCount: 0,
         ),
         body: ListView.builder(
             itemCount: 8,
             itemBuilder: (context, index) {
               return Card(
-                // shape: RoundedRectangleBorder(
-                //   borderRadius: BorderRadius.circular(40)
-                // ),
                 elevation: 4,
                 clipBehavior: Clip.antiAlias,
                 margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 15),
@@ -128,6 +125,9 @@ class _CartState extends State<Cart> {
                 ),
               );
             }),
-        bottomNavigationBar: const CartBottomBar());
+        bottomNavigationBar: const CartBottomBar(
+          totalPrice: 45000,
+          shippingFees: 200,
+        ));
   }
 }

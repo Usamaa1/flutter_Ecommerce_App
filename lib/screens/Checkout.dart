@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:full_app/widgets/DropdownInput.dart';
-import 'package:full_app/widgets/HeadingText.dart';
-import 'package:full_app/widgets/TextInput.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:full_app/widgets/CartBottomBar.dart';
+import 'package:full_app/widgets/CheckoutCard.dart';
+import 'package:full_app/widgets/MyAppBar.dart';
 
 class Checkout extends StatefulWidget {
   const Checkout({
@@ -17,33 +18,32 @@ class _CheckoutState extends State<Checkout> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(),
+    return const Scaffold(
+      appBar: MyAppBar(
+        title: "Chekout",
+        cartCount: 0,
+      ),
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Center(
-              child: HeadingText(
-                headingText: "Enter Shipping Details",
-                headingSize: 22,
-              ),
+            ListCard(
+              cardTitle: "Payment Options",
+              cardItem: "000-00-0000",
+              cartImage: FaIcon(FontAwesomeIcons.creditCard),
+              linkText: "Change",
             ),
-            DropdownInput(
-                value: dropDownValue.toString(),
-                dropDownList: [
-                  "Choose city",
-                  'Karachi',
-                  'Lahore',
-                  'Islambad',
-                  'Multan'
-                ],
-                changeFunc: (v) {
-                  setState(() {
-                    dropDownValue = v;
-                  });
-                }),
+            ListCard(
+              cardTitle: "Delivery Address",
+              cardItem: "No delivery address",
+              cartImage: FaIcon(FontAwesomeIcons.house),
+              linkText: "Add+",
+            )
           ],
         ),
+      ),
+      bottomNavigationBar: CartBottomBar(
+        totalPrice: 45000,
+        shippingFees: 200,
       ),
     );
   }

@@ -2,12 +2,27 @@ import 'package:flutter/material.dart';
 import 'package:full_app/screens/Checkout.dart';
 
 class CartBottomBar extends StatelessWidget {
-  const CartBottomBar({super.key});
+  final int totalPrice;
+  final int shippingFees;
+  const CartBottomBar({
+    super.key,
+    required this.totalPrice,
+    required this.shippingFees,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Container(
       decoration: const BoxDecoration(
+          boxShadow: [
+            BoxShadow(
+              blurStyle: BlurStyle.outer,
+              color: Color.fromARGB(178, 190, 195, 195),
+              spreadRadius: 4,
+              blurRadius: 10,
+              offset: Offset(0, 4),
+            ),
+          ],
           border: Border(
             top: BorderSide(width: 1, color: Color.fromARGB(52, 182, 181, 181)),
           ),
@@ -26,10 +41,10 @@ class CartBottomBar extends StatelessWidget {
                 border: const TableBorder(
                     horizontalInside:
                         BorderSide(width: 1, color: Colors.black54)),
-                children: const [
+                children: [
                   TableRow(
                     children: [
-                      Padding(
+                      const Padding(
                         padding: EdgeInsets.all(8.0),
                         child: Text(
                           "Total Price",
@@ -38,25 +53,25 @@ class CartBottomBar extends StatelessWidget {
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: Text("5600"),
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text("$totalPrice"),
                       ),
                     ],
                   ),
                   TableRow(
                     children: [
-                      Padding(
+                      const Padding(
                         padding: EdgeInsets.all(8.0),
                         child: Text("Shipping Fees"),
                       ),
                       Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: Text("200"),
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text("${shippingFees ?? 0}"),
                       ),
                     ],
                   ),
                   TableRow(children: [
-                    Padding(
+                    const Padding(
                       padding: EdgeInsets.all(8.0),
                       child: Text(
                         "Sub Total",
@@ -65,10 +80,10 @@ class CartBottomBar extends StatelessWidget {
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsets.all(8.0),
+                      padding: const EdgeInsets.all(8.0),
                       child: Text(
-                        "5800",
-                        style: TextStyle(
+                        "${totalPrice + shippingFees}",
+                        style: const TextStyle(
                             fontWeight: FontWeight.bold, fontSize: 14),
                       ),
                     ),
@@ -80,7 +95,7 @@ class CartBottomBar extends StatelessWidget {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => Checkout(),
+                        builder: (context) => const Checkout(),
                       ));
                 },
                 color: Colors.blue,
