@@ -6,17 +6,20 @@ class ListCard extends StatelessWidget {
   final String cardTitle;
   final String? cardItem;
   final String? linkText;
-  const ListCard(
-      {super.key,
-      required this.cardTitle,
-      this.cardItem,
-      this.linkText,
-      this.cartImage});
+  final GestureTapCallback? linkFunc;
+  const ListCard({
+    super.key,
+    required this.cardTitle,
+    this.cardItem,
+    this.linkText,
+    this.cartImage,
+    this.linkFunc,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding:const EdgeInsets.all(4),
+      padding: const EdgeInsets.all(4),
       child: Card(
         elevation: 2,
         child: ListTile(
@@ -31,9 +34,10 @@ class ListCard extends StatelessWidget {
           ),
           subtitle: Text(cardItem ?? "No Card Added"),
           trailing: InkWell(
+            onTap: linkFunc,
             child: Text(
               linkText ?? "Add",
-              style:const TextStyle(
+              style: const TextStyle(
                 color: Colors.blueAccent,
               ),
             ),

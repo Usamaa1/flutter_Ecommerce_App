@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:full_app/screens/AddCreditCard.dart';
+import 'package:full_app/screens/AddDeliveryAddress.dart';
 import 'package:full_app/widgets/CartBottomBar.dart';
 import 'package:full_app/widgets/CheckoutCard.dart';
 import 'package:full_app/widgets/MyAppBar.dart';
@@ -18,8 +20,8 @@ class _CheckoutState extends State<Checkout> {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      appBar: MyAppBar(
+    return Scaffold(
+      appBar: const MyAppBar(
         title: "Chekout",
         cartCount: 0,
       ),
@@ -31,12 +33,23 @@ class _CheckoutState extends State<Checkout> {
               cardItem: "000-00-0000",
               cartImage: FaIcon(FontAwesomeIcons.creditCard),
               linkText: "Change",
+              linkFunc: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => AddCreditCard()));
+              },
             ),
             ListCard(
               cardTitle: "Delivery Address",
               cardItem: "No delivery address",
               cartImage: FaIcon(FontAwesomeIcons.house),
               linkText: "Add+",
+              linkFunc: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => AddDeliveryAddress(),
+                    ));
+              },
             )
           ],
         ),
